@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <!--css-->   
+  <link rel="stylesheet" type="text/css" href="css/stylesheet.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans">
+  <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+
+  <!--jqueries and bubble settings-->
+  <script src="js/jquery-1.11.0.min.js"></script>
+  <script type="text/javascript" src="http://www.alpacajs.org/js/alpaca.min.js"></script>
+<link type="text/css" href="http://www.alpacajs.org/css/alpaca.min.css" rel="stylesheet"/>
+
+</head> <!--end of head-->
+  <body>
+
+    <div id="container">
+
+      <div id="status">
+        <img id="status_bar" src="images/status_bar.png">
+      </div>
+
+      <div id="header6">
+        <a href="index.html"><img id="home_button" src="images/homepage.png"></a>
+        <img class="upper_titles" src="images/createpiggy_title.png">
+      </div>
+
+      
+    
+    <div id="form1"></div>
+<div>
+ <!--<input type="button" id="form1-button" value="Submit" onclick:"home_post_piggy.html">-->
+</div>
+<script type="text/javascript">
+$(function() {
+  $("#form1").alpaca({
+   
+    "schema": {
+      "type":"object",
+      "properties": {
+        "name": {
+          "type":"string",
+          "title":"Name",
+          "required":true,
+          
+        },
+
+        "goal":{
+            "type": "number",
+            "title":"Goal Amount",           
+            "required":true,
+              },
+
+        "comment": {
+          "type":"string",
+          "title":"Comment"
+        },
+
+
+        "deposit":{
+            "type": "number",
+            "title":"Deposit",
+            "required":true,
+              },        
+      }
+    },
+
+
+    "options": {
+     
+      "fields": {
+        "name": {
+          "size": 20,
+          "helper": "Give your piggy a name :)"
+        },
+
+     
+        "goal": {
+          "size": 20,
+          "helper": "What is your goal?"
+        },
+
+
+        "comment" : {
+          "type": "textarea",
+          "name": "your_feedback",
+          "rows": 5,
+          "cols": 40,
+          "helper": "Leave a comment here."
+        },
+
+        "deposit": {
+          "size": 20,
+          "helper": "How much do you want to contribute?"
+        },
+       
+      }
+    },
+    
+    "postRender": function(renderedForm) {
+      $('#form4-button').click(function() {
+        if (renderedForm.isValid(true)) {
+          var val = renderedForm.getValue();
+          $.ajax({
+            type: "POST",
+            url: "examples/endpoints/save2.php",
+            data: {json:JSON.stringify(val)},
+            success: function(msg) {
+              alert("Request received: " + msg);
+            }
+          });
+        }
+      });
+    }
+  });
+});
+</script>
+
+
+<div id="back_button"><a href="index.html"><img src="images/back.png"></a></div>
+      <div id="finish_button2"><a href="home_post_piggy.html"><img src="images/finish.png"></a></div>
+    
+
+    
+
+    <script src="js/bootstrap.min.js"></script>
+
+
+
+  </body>
+
+
+</html>
+
+
+
